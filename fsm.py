@@ -25,8 +25,8 @@ class TocMachine(GraphMachine):
     def on_exit_start(self):
         print("Leaving start")
 
-    def on_enter_choose(self, event):
-        print("I'm entering choose")
+    def on_enter_choose1(self, event):
+        print("I'm entering choose1")
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"日前可以選擇有：狗、貓")
