@@ -16,10 +16,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "您好！歡迎來到QQ醬><!這裡是一個提供認養寵物的平台！"+"\n"+"可以輸入：\"我要領養\" 或者是 \"我要上傳\" ")
-        self.go_back()
-
-    def on_exit_start(self):
-        print("Leaving start")
+        #self.go_back()
 
     def is_going_to_choose1(self, event):
         text = event.message.text
@@ -30,10 +27,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"目前可以選擇得有：狗、貓")
-        self.go_back()
-
-    def on_exit_choose1(self):
-        print("Leaving choose1")
+        #self.go_back()
 
     def is_going_to_dog(self, event):
         text = event.message.text
@@ -44,10 +38,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-        self.go_back()
-
-    def on_exit_dog(self):
-        print("Leaving dog")
+        #self.go_back()
     
     def is_going_to_cat(self, event):
         text = event.message.text
@@ -58,10 +49,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-        self.go_back()
-
-    def on_exit_cat(self):
-        print("Leaving cat")
+        #self.go_back()
     
     def is_going_to_boy(self, event):
         text = event.message.text
@@ -72,10 +60,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
-        self.go_back()
-
-    def on_exit_boy(self):
-        print("Leaving boy")
+        #self.go_back()
     
     def is_going_to_girl(self, event):
         text = event.message.text
@@ -86,10 +71,7 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
-        self.go_back()
-
-    def on_exit_girl(self):
-        print("Leaving girl")
+        #self.go_back()
 
     def is_going_to_location(self, event):
         text = event.message.text
@@ -101,6 +83,3 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         send_text_message(reply_token, "以下為根據您的條件搜尋出來的浪浪們：")
         self.go_back()
-
-    def on_exit_location(self):
-        print("Leaving location")
