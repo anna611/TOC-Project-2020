@@ -75,7 +75,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_location(self, event):
         text = event.message.text
-        return true
+        return True
 
     def on_enter_location(self, event):
         print("I'm entering location")
