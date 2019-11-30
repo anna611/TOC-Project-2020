@@ -19,7 +19,7 @@ class TocMachine(GraphMachine):
         print("I'm entering start")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "您好！歡迎來到QQ醬><，是一個提供認養寵物的平台！"+"可以輸入：\"我要領養\" 或者是 \"我要上傳\" ")
+        send_text_message(reply_token, "您好！歡迎來到QQ醬><!這裡是一個提供認養寵物的平台！"+"\n"+"可以輸入：\"我要領養\" 或者是 \"我要上傳\" ")
         self.go_back()
 
     def on_exit_start(self):
