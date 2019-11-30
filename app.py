@@ -14,7 +14,7 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "start", "choose1"],
+    states=["user", "start", "choose1","dog","cat","boy","girl","location"],
     transitions=[
         {
             "trigger": "advance",
@@ -24,11 +24,59 @@ machine = TocMachine(
         },
         {
             "trigger": "advance",
-            "source": "user",
+            "source": "start",
             "dest": "choose1",
             "conditions": "is_going_to_choose1",
         },
-        {"trigger": "go_back", "source": ["start", "choose1"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "choose1",
+            "dest": "dog",
+            "conditions": "is_going_to_dog",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose1",
+            "dest": "cat",
+            "conditions": "is_going_to_cat",
+        },
+        {
+            "trigger": "advance",
+            "source": "dog",
+            "dest": "boy",
+            "conditions": "is_going_to_boy",
+        },
+        {
+            "trigger": "advance",
+            "source": "cat",
+            "dest": "boy",
+            "conditions": "is_going_to_boy",
+        },
+        {
+            "trigger": "advance",
+            "source": "dog",
+            "dest": "girl",
+            "conditions": "is_going_to_girl",
+        },
+        {
+            "trigger": "advance",
+            "source": "cat",
+            "dest": "girl",
+            "conditions": "is_going_to_girl",
+        },
+        {
+            "trigger": "advance",
+            "source": "boy",
+            "dest": "location",
+            "conditions": "is_going_to_location",
+        },
+        {
+            "trigger": "advance",
+            "source": "girl",
+            "dest": "location",
+            "conditions": "is_going_to_location",
+        },
+        {"trigger": "go_back", "source": ["start", "choose1","dog","cat","boy","girl","location"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,

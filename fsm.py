@@ -11,10 +11,6 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "start"
 
-    def is_going_to_choose1(self, event):
-        text = event.message.text
-        return text.lower() == "我要領養"
-
     def on_enter_start(self, event):
         print("I'm entering start")
 
@@ -25,12 +21,86 @@ class TocMachine(GraphMachine):
     def on_exit_start(self):
         print("Leaving start")
 
+    def is_going_to_choose1(self, event):
+        text = event.message.text
+        return text.lower() == "我要領養"
+
     def on_enter_choose1(self, event):
         print("I'm entering choose1")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"日前可以選擇有：狗、貓")
+        send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"目前可以選擇得有：狗、貓")
         self.go_back()
 
-    def on_exit_choose(self):
-        print("Leaving state2")
+    def on_exit_choose1(self):
+        print("Leaving choose1")
+
+    def is_going_to_dog(self, event):
+        text = event.message.text
+        return text.lower() == "狗"
+
+    def on_enter_dog(self, event):
+        print("I'm entering dog")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
+        self.go_back()
+
+    def on_exit_dog(self):
+        print("Leaving dog")
+    
+    def is_going_to_cat(self, event):
+        text = event.message.text
+        return text.lower() == "貓"
+
+    def on_enter_cat(self, event):
+        print("I'm entering cat")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
+        self.go_back()
+
+    def on_exit_cat(self):
+        print("Leaving cat")
+    
+    def is_going_to_boy(self, event):
+        text = event.message.text
+        return text.lower() == "公"
+
+    def on_enter_boy(self, event):
+        print("I'm entering boy")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
+        self.go_back()
+
+    def on_exit_boy(self):
+        print("Leaving boy")
+    
+    def is_going_to_girl(self, event):
+        text = event.message.text
+        return text.lower() == "母"
+
+    def on_enter_girl(self, event):
+        print("I'm entering girl")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
+        self.go_back()
+
+    def on_exit_girl(self):
+        print("Leaving girl")
+
+    def is_going_to_location(self, event):
+        text = event.message.text
+        return true
+
+    def on_enter_location(self, event):
+        print("I'm entering location")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "以下為根據您的條件搜尋出來的浪浪們：")
+        self.go_back()
+
+    def on_exit_location(self):
+        print("Leaving location")
