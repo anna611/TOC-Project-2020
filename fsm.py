@@ -7,30 +7,30 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_state1(self, event):
+    def is_going_to_start(self, event):
         text = event.message.text
-        return text.lower() == "go to state1"
+        return text.lower() == "start"
 
-    def is_going_to_state2(self, event):
+    def is_going_to_choose1(self, event):
         text = event.message.text
-        return text.lower() == "go to state2"
+        return text.lower() == "我要領養"
 
-    def on_enter_state1(self, event):
-        print("I'm entering state1")
+    def on_enter_start(self, event):
+        print("I'm entering start")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state1")
+        send_text_message(reply_token, "您好！歡迎來到QQ醬><，是一個提供認養寵物的平台！"+"可以輸入：\"我要領養\" 或者是 \"我要上傳\" ")
         self.go_back()
 
-    def on_exit_state1(self):
-        print("Leaving state1")
+    def on_exit_start(self):
+        print("Leaving start")
 
-    def on_enter_state2(self, event):
-        print("I'm entering state2")
+    def on_enter_choose(self, event):
+        print("I'm entering choose")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state2")
+        send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"日前可以選擇有：狗、貓")
         self.go_back()
 
-    def on_exit_state2(self):
+    def on_exit_choose(self):
         print("Leaving state2")
