@@ -43,7 +43,7 @@ class TocMachine(GraphMachine):
                 )
             ]
         )
-        send_text_message(reply_token,Confirm_template )
+        send_text_message(reply_token,Confirm_template)
         
         #self.go_back()
 
