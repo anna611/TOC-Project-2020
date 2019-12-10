@@ -13,9 +13,25 @@ class TocMachine(GraphMachine):
 
     def on_enter_start(self, event):
         print("I'm entering start")
-
-        reply_token = event.reply_token
-        send_text_message(reply_token, "您好！歡迎來到QQ醬><!這裡是一個提供認養寵物的平台！"+"\n"+"可以輸入：\"我要領養\" 或者是 \"我要上傳\" ")
+        Confirm_template = TemplateSendMessage(
+        alt_text='目錄 template',
+        template=ConfirmTemplate(
+            title='start',
+            text='您好！歡迎來到QQ醬><!這裡是一個提供認養寵物的平台！',
+            actions=[                              
+                PostbackTemplateAction(
+                    label='adopt',
+                    text='我要領養',
+                    data='action=buy&itemid=1'
+                ),
+                MessageTemplateAction(
+                    label='upload',
+                    text='我要上傳'
+                )
+            ]
+        )
+        )
+        send_choose_message(event.source.user_id,Confirm_template)
         #self.go_back()
 
     def is_going_to_choose1(self, event):
@@ -24,10 +40,6 @@ class TocMachine(GraphMachine):
 
     def on_enter_choose1(self, event):
         print("I'm entering choose1")
-        reply_token = event.reply_token
-        send_text_message(reply_token,"請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-        '''
-        reply_token = event.reply_token
         Confirm_template = TemplateSendMessage(
         alt_text='目錄 template',
         template=ConfirmTemplate(
@@ -46,8 +58,8 @@ class TocMachine(GraphMachine):
             ]
         )
         )
-        send_text_message(reply_token,Confirm_template)
-        '''
+        send_choose_message(event.source.user_id,Confirm_template)
+        
         #self.go_back()
 
     def is_going_to_dog(self, event):
@@ -56,10 +68,24 @@ class TocMachine(GraphMachine):
 
     def on_enter_dog(self, event):
         print("I'm entering dog")
-
-        reply_token = event.reply_token
-        send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-        #self.go_back()
+        Confirm_template = TemplateSendMessage(
+        alt_text='目錄 template',
+        template=ConfirmTemplate(
+            title='gender',
+            text='請問你想要領養哪種性別？',
+            actions=[                              
+                PostbackTemplateAction(
+                    label='man',
+                    text='公',
+                    data='action=buy&itemid=1'
+                ),
+                MessageTemplateAction(
+                    label='woman',
+                    text='母'
+                )
+            ]
+        )
+        )
     
     def is_going_to_cat(self, event):
         text = event.message.text
@@ -67,10 +93,25 @@ class TocMachine(GraphMachine):
 
     def on_enter_cat(self, event):
         print("I'm entering cat")
-
-        reply_token = event.reply_token
-        send_text_message(reply_token, "請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-        #self.go_back()
+        Confirm_template = TemplateSendMessage(
+            alt_text='目錄 template',
+            template=ConfirmTemplate(
+                title='gender',
+                text='請問你想要領養哪種性別？',
+                actions=[                              
+                    PostbackTemplateAction(
+                        label='man',
+                        text='公',
+                        data='action=buy&itemid=1'
+                    ),
+                    MessageTemplateAction(
+                        label='woman',
+                        text='母'
+                    )
+                ]
+            )
+        )
+        )
     
     def is_going_to_boy(self, event):
         text = event.message.text
