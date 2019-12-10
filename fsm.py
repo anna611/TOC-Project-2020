@@ -221,7 +221,7 @@ class TocMachine(GraphMachine):
         index2 = 0
         res2 = []
         while len(res2) < 50:
-            if crawler_id(i+1,"母") == 1
+            if crawler_id(i+1,"母") == 1:
                 res2.append(i+1)
         Carousel_template = TemplateSendMessage(
         alt_text='Carousel template',
