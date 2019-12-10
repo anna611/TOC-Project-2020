@@ -120,7 +120,8 @@ class TocMachine(GraphMachine):
 
     def on_enter_boy(self, event):
         print("I'm entering boy")
-        global index = 0
+        global index
+        index = 0
         res = []
         while len(res) < 50:
             if crawler_id(i+1,"公") == 1
@@ -216,7 +217,8 @@ class TocMachine(GraphMachine):
 
     def on_enter_girl(self, event):
         print("I'm entering girl")
-        global index2 = 0
+        global index2
+        index2 = 0
         res2 = []
         while len(res2) < 50:
             if crawler_id(i+1,"母") == 1
