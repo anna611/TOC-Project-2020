@@ -26,7 +26,7 @@ class TocMachine(GraphMachine):
         print("I'm entering choose1")
         reply_token = event.reply_token
         send_text_message(reply_token,"請問你想要領養哪種性別？"+"\n"+"請輸入：公、母")
-'''
+        '''
         reply_token = event.reply_token
         Confirm_template = TemplateSendMessage(
         alt_text='目錄 template',
