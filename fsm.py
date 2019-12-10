@@ -213,7 +213,7 @@ class TocMachine(GraphMachine):
     
     def is_going_to_girl(self, event):
         text = event.message.text
-        return text.lower() == "母":
+        return text.lower() == "母"
 
     def on_enter_girl(self, event):
         print("I'm entering girl")
