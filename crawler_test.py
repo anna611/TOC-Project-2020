@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
    
-browser = webdriver.Chrome(./chromedriver)
+browser = webdriver.Chrome('./chromedriver')
 browser.get("https://asms.coa.gov.tw/Amlapp/App/AnnounceMent.aspx?PageType=Adopt&AnimalType=1")
 browser.execute_script('window.scrollTo(0,300);')
 soup = BeautifulSoup(browser.page_source, "html.parser")
