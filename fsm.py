@@ -94,24 +94,24 @@ class TocMachine(GraphMachine):
 
     def on_enter_cat(self, event):
         print("I'm entering cat")
-    Confirm_template = TemplateSendMessage(
-        alt_text='目錄 template',
-        template=ConfirmTemplate(
-            title='gender',
-            text='請問你想要領養哪種性別？',
-            actions=[                              
-                PostbackTemplateAction(
-                    label='公',
-                    text='公',
-                    data='action=buy&itemid=1'
-                ),
-                MessageTemplateAction(
-                    label='母',
-                    text='母'
-                )
-            ]
-        )
-        )
+        Confirm_template = TemplateSendMessage(
+            alt_text='目錄 template',
+            template=ConfirmTemplate(
+                title='gender',
+                text='請問你想要領養哪種性別？',
+                actions=[                              
+                    PostbackTemplateAction(
+                        label='公',
+                        text='公',
+                        data='action=buy&itemid=1'
+                    ),
+                    MessageTemplateAction(
+                        label='母',
+                        text='母'
+                    )
+                ]
+            )
+            )
         send_choose_message(event.source.user_id,Confirm_template)
     
     def is_going_to_boy(self, event):
