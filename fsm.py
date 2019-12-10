@@ -1,5 +1,5 @@
 from transitions.extensions import GraphMachine
-
+from crawler_test import *
 from utils import *
 from linebot.models import *
 
@@ -120,9 +120,94 @@ class TocMachine(GraphMachine):
 
     def on_enter_boy(self, event):
         print("I'm entering boy")
-
-        reply_token = event.reply_token
-        send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
+        global index = 0
+        res = []
+        while len(res) < 50:
+            if crawler_id(i+1,"公") == 1
+                res.append(i+1)
+        Carousel_template = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index]),
+                title='1',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri= crawler_url(res[index])
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index+1]),
+                title='2',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index+1])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index+2]),
+                title='3',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index+2])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index+3]),
+                title='4',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index+3])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index+4]),
+                title='5',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index+4])
+                    )
+                ]
+            )
+        ]
+    )
+    )
+    send_choose_message(event.source.user_id,Confirm_template)
         #self.go_back()
     
     def is_going_to_girl(self, event):
@@ -131,17 +216,102 @@ class TocMachine(GraphMachine):
 
     def on_enter_girl(self, event):
         print("I'm entering girl")
-
-        reply_token = event.reply_token
-        send_text_message(reply_token, "請輸入您希望認養的地區，EX：，EX：彰化市、麻豆區…")
+        global index2 = 0
+        res2 = []
+        while len(res2) < 50:
+            if crawler_id(i+1,"母") == 1
+                res2.append(i+1)
+        Carousel_template = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index2]),
+                title='1',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri= crawler_url(res[index2])
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index2+1]),
+                title='2',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index2+1])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index2+2]),
+                title='3',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index2+2])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index2+3]),
+                title='4',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index2+3])
+                    )
+                ]
+            )
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(res[index2+4]),
+                title='5',
+                text='',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri=crawler_url(res[index2+4])
+                    )
+                ]
+            )
+        ]
+    )
+    )
+    send_choose_message(event.source.user_id,Confirm_template)
         #self.go_back()
 
-    def is_going_to_location(self, event):
+    def is_going_to_more(self, event):
         text = event.message.text
         return True
 
-    def on_enter_location(self, event):
-        print("I'm entering location")
+    def on_enter_more(self, event):
+        print("I'm entering result")
 
         reply_token = event.reply_token
         send_text_message(reply_token, "以下為根據您的條件搜尋出來的浪浪們：")
