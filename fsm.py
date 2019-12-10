@@ -124,7 +124,7 @@ class TocMachine(GraphMachine):
         index = 0
         res = []
         while len(res) < 50:
-            if crawler_id(i+1,"公") == 1
+            if crawler_id(i+1,"公") == 1:
                 res.append(i+1)
         Carousel_template = TemplateSendMessage(
         alt_text='Carousel template',
@@ -213,7 +213,7 @@ class TocMachine(GraphMachine):
     
     def is_going_to_girl(self, event):
         text = event.message.text
-        return text.lower() == "母"
+        return text.lower() == "母":
 
     def on_enter_girl(self, event):
         print("I'm entering girl")
