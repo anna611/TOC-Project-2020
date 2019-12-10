@@ -8,7 +8,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
-   
+
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
 browser = webdriver.Chrome('./chromedriver')
 browser.get("https://asms.coa.gov.tw/Amlapp/App/AnnounceMent.aspx?PageType=Adopt&AnimalType=1")
 browser.execute_script('window.scrollTo(0,300);')
