@@ -26,7 +26,25 @@ class TocMachine(GraphMachine):
         print("I'm entering choose1")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "請問你想要領養哪種動物？"+"\n"+"目前可以選擇得有：狗、貓")
+        Confirm_template = TemplateSendMessage(
+        alt_text='目錄 template',
+        template=ConfirmTemplate(
+            title='choose',
+            text='請問你想要領養哪種動物？',
+            actions=[                              
+                PostbackTemplateAction(
+                    label='dog',
+                    text='狗',
+                    data='action=buy&itemid=1'
+                ),
+                MessageTemplateAction(
+                    label='cat',
+                    text='貓'
+                )
+            ]
+        )
+        send_text_message(reply_token,Confirm_template )
+        
         #self.go_back()
 
     def is_going_to_dog(self, event):
@@ -82,4 +100,5 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "以下為根據您的條件搜尋出來的浪浪們：")
+       
         self.go_back()
