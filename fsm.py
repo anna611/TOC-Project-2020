@@ -24,7 +24,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_choose1(self, event):
         print("I'm entering choose1")
-
+'''
         reply_token = event.reply_token
         Confirm_template = TemplateSendMessage(
         alt_text='目錄 template',
@@ -45,7 +45,7 @@ class TocMachine(GraphMachine):
         )
         )
         send_text_message(reply_token,Confirm_template)
-        
+        '''
         #self.go_back()
 
     def is_going_to_dog(self, event):
