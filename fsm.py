@@ -20,12 +20,12 @@ class TocMachine(GraphMachine):
             text='您好！歡迎來到QQ醬><!這裡是一個提供認養寵物的平台！',
             actions=[                              
                 PostbackTemplateAction(
-                    label='adopt',
+                    label='我要領養',
                     text='我要領養',
                     data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label='upload',
+                    label='我要上傳',
                     text='我要上傳'
                 )
             ]
@@ -47,12 +47,12 @@ class TocMachine(GraphMachine):
             text='請問你想要領養哪種動物？',
             actions=[                              
                 PostbackTemplateAction(
-                    label='dog',
+                    label='狗',
                     text='狗',
                     data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label='cat',
+                    label='貓',
                     text='貓'
                 )
             ]
@@ -75,17 +75,18 @@ class TocMachine(GraphMachine):
             text='請問你想要領養哪種性別？',
             actions=[                              
                 PostbackTemplateAction(
-                    label='man',
+                    label='公',
                     text='公',
                     data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label='woman',
+                    label='母',
                     text='母'
                 )
             ]
         )
         )
+        send_choose_message(event.source.user_id,Confirm_template)
     
     def is_going_to_cat(self, event):
         text = event.message.text
@@ -100,17 +101,18 @@ class TocMachine(GraphMachine):
             text='請問你想要領養哪種性別？',
             actions=[                              
                 PostbackTemplateAction(
-                    label='man',
+                    label='公',
                     text='公',
                     data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label='woman',
+                    label='母',
                     text='母'
                 )
             ]
         )
         )
+        send_choose_message(event.source.user_id,Confirm_template)
     
     def is_going_to_boy(self, event):
         text = event.message.text
