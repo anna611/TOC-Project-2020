@@ -159,7 +159,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index+1])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index+2]),
                 title='3',
@@ -174,7 +174,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index+2])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index+3]),
                 title='4',
@@ -189,7 +189,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index+3])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index+4]),
                 title='5',
@@ -256,7 +256,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index2+1])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index2+2]),
                 title='3',
@@ -271,7 +271,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index2+2])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index2+3]),
                 title='4',
@@ -286,7 +286,7 @@ class TocMachine(GraphMachine):
                         uri=crawler_url(res[index2+3])
                     )
                 ]
-            )
+            ),
             CarouselColumn(
                 thumbnail_image_url= crawler_img(res[index2+4]),
                 title='5',
