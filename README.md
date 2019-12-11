@@ -1,16 +1,5 @@
-# TOC Project 2020
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/dc7fa47fcd809b99d087/maintainability)](https://codeclimate.com/github/NCKU-CCS/TOC-Project-2020/maintainability)
-
-[![Known Vulnerabilities](https://snyk.io/test/github/NCKU-CCS/TOC-Project-2020/badge.svg)](https://snyk.io/test/github/NCKU-CCS/TOC-Project-2020)
-
-
-Template Code for TOC Project 2020
-
-A Line bot based on a finite state machine
-
-More details in the [Slides](https://hackmd.io/@TTW/ToC-2019-Project#) and [FAQ](https://hackmd.io/s/B1Xw7E8kN)
-
+# TOC Project 2020(流浪動物認養平台)
+### 這次Project主要想法是為了提倡動物領養代替購買，結合全國動物收容管理系統，去找出等待領養的浪浪們。
 ## Setup
 
 ### Prerequisite
@@ -33,12 +22,6 @@ pipenv shell
 * pygraphviz (For visualizing Finite State Machine)
     * [Setup pygraphviz on Ubuntu](http://www.jianshu.com/p/a3da7ecc5303)
 	* [Note: macOS Install error](https://github.com/pygraphviz/pygraphviz/issues/100)
-
-
-#### Secret Data
-You should generate a `.env` file to set Environment Variables refer to our `.env.sample`.
-`LINE_CHANNEL_SECRET` and `LINE_CHANNEL_ACCESS_TOKEN` **MUST** be set to proper values.
-Otherwise, you might not be able to run your code.
 
 #### Run Locally
 You can either setup https server or using `ngrok` as a proxy.
@@ -68,50 +51,6 @@ python3 app.py
 #### b. Servo
 
 Or You can use [servo](http://serveo.net/) to expose local servers to the internet.
-
-
-## Finite State Machine
-![fsm](./img/show-fsm.png)
-
-## Usage
-The initial state is set to `user`.
-
-Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
-
-* user
-	* Input: "go to state1"
-		* Reply: "I'm entering state1"
-
-	* Input: "go to state2"
-		* Reply: "I'm entering state2"
-
-## Deploy
-Setting to deploy webhooks on Heroku.
-
-### Heroku CLI installation
-
-* [macOS, Windows](https://devcenter.heroku.com/articles/heroku-cli)
-
-or you can use Homebrew (MAC)
-```sh
-brew tap heroku/brew && brew install heroku
-```
-
-or you can use Snap (Ubuntu 16+)
-```sh
-sudo snap install --classic heroku
-```
-
-### Connect to Heroku
-
-1. Register Heroku: https://signup.heroku.com
-
-2. Create Heroku project from website
-
-3. CLI Login
-
-	`heroku login`
-
 ### Upload project to Heroku
 
 1. Add local project to Heroku project
@@ -147,13 +86,47 @@ sudo snap install --classic heroku
 	heroku buildpacks:add --index 1 heroku-community/apt
 	```
 
-	refference: https://hackmd.io/@ccw/B1Xw7E8kN?type=view#Q2-如何在-Heroku-使用-pygraphviz
+## Finite State Machine
+![](https://i.imgur.com/I7uDz4l.png)
 
-## Reference
-[Pipenv](https://medium.com/@chihsuan/pipenv-更簡單-更快速的-python-套件管理工具-135a47e504f4) ❤️ [@chihsuan](https://github.com/chihsuan)
 
-[TOC-Project-2019](https://github.com/winonecheng/TOC-Project-2019) ❤️ [@winonecheng](https://github.com/winonecheng)
+## Usage
+The initial state is set to `user`.
+* user
+	* Input: "start"
+		![](https://i.imgur.com/vEByMmm.jpg)
 
-Flask Architecture ❤️ [@Sirius207](https://github.com/Sirius207)
+* start
+    * Input: "fsm"
+		![](https://i.imgur.com/uu75IEo.jpg)
+    
+    
+    * Input: "我要領養"
+        ![](https://i.imgur.com/96v5l88.jpg)
 
-[Line line-bot-sdk-python](https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-echo)
+* choose1
+    * Input: "狗" (去爬蟲全國動物收容系統得到的資料，按更多資訊會前往網站)
+    * ![](https://i.imgur.com/4BvUMCU.jpg)
+
+    * Input: "貓"
+    ![](https://i.imgur.com/ThB2RIi.jpg)
+
+* dog
+    * Input: "下載圖片"
+     ![](https://i.imgur.com/A5OR3nt.jpg)
+
+
+    * Input: "下一個"
+     ![](https://i.imgur.com/EVxGcuY.jpg)
+
+
+* cat
+    * Input: "下載圖片"
+     ![](https://i.imgur.com/NCTK5Qv.jpg)
+
+    * Input: "下一個"
+     ![](https://i.imgur.com/mSBuHVN.jpg)
+* pic
+    * Input: "下一個"
+    ![](https://i.imgur.com/mSBuHVN.jpg)
+
