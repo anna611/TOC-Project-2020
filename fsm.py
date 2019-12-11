@@ -6,10 +6,17 @@ from linebot.models import *
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
-
+    def is_going_to_fsm(self,event):
+        text = event.message.text
+        return text.lower() == "fsm"
+    def on_enter_fsm(self,event):   
+        send_img(event.source.user_id,"https://qqhiiiiiii.herokuapp.com/show-fsm")
+        self.go_back()
     def is_going_to_start(self, event):
         text = event.message.text
-        return text.lower() == "start"
+        if text.lower() == "start" or text.lower() == "menu":
+            return True
+
 
     def on_enter_start(self, event):
         print("I'm entering start")
@@ -25,8 +32,8 @@ class TocMachine(GraphMachine):
                     data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label='我要上傳',
-                    text='我要上傳'
+                    label='fsm',
+                    text='fsm'
                 )
             ]
         )
@@ -68,25 +75,33 @@ class TocMachine(GraphMachine):
 
     def on_enter_dog(self, event):
         print("I'm entering dog")
-        Confirm_template = TemplateSendMessage(
-        alt_text='目錄 template',
-        template=ConfirmTemplate(
-            title='gender',
-            text='請問你想要領養哪種性別？',
-            actions=[                              
-                PostbackTemplateAction(
-                    label='公',
-                    text='公',
-                    data='action=buy&itemid=1'
-                ),
-                MessageTemplateAction(
-                    label='母',
-                    text='母'
-                )
-            ]
+        global a
+        a = 1
+        global index
+        index = 0
+        Carousel_template = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(index,a),
+                title='這是搜尋出來的浪浪',
+                text='點擊更多資訊可以得到更多浪浪的資訊喔！'+'\n'+'也可以下載浪浪的照片><',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri= crawler_url(index,a)
+                    )
+                ]
+            )
+        ]
         )
         )
-        send_choose_message(event.source.user_id,Confirm_template)
+        send_choose_message(event.source.user_id,Carousel_template)
     
     def is_going_to_cat(self, event):
         text = event.message.text
@@ -94,46 +109,18 @@ class TocMachine(GraphMachine):
 
     def on_enter_cat(self, event):
         print("I'm entering cat")
-        Confirm_template = TemplateSendMessage(
-            alt_text='目錄 template',
-            template=ConfirmTemplate(
-                title='gender',
-                text='請問你想要領養哪種性別？',
-                actions=[                              
-                    PostbackTemplateAction(
-                        label='公',
-                        text='公',
-                        data='action=buy&itemid=1'
-                    ),
-                    MessageTemplateAction(
-                        label='母',
-                        text='母'
-                    )
-                ]
-            )
-            )
-        send_choose_message(event.source.user_id,Confirm_template)
-    
-    def is_going_to_boy(self, event):
-        text = event.message.text
-        return text.lower() == "公"
-
-    def on_enter_boy(self, event):
-        print("I'm entering boy")
+        global a
+        a = 2
         global index
         index = 0
-        res = []
-        while len(res) < 50:
-            if crawler_id(i+1,"公") == 1:
-                res.append(i+1)
         Carousel_template = TemplateSendMessage(
         alt_text='Carousel template',
         template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index]),
-                title='1',
-                text='',
+                thumbnail_image_url= crawler_img(index,a),
+                title='這是搜尋出來的浪浪',
+                text='點擊更多資訊可以得到更多浪浪的資訊喔！'+'\n'+'也可以下載浪浪的照片><',
                 actions=[
                     MessageTemplateAction(
                         label='下載圖片',
@@ -141,181 +128,51 @@ class TocMachine(GraphMachine):
                     ),
                     URITemplateAction(
                         label='更多資訊',
-                        uri= crawler_url(res[index])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index+1]),
-                title='2',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index+1])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index+2]),
-                title='3',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index+2])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index+3]),
-                title='4',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index+3])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index+4]),
-                title='5',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index+4])
+                        uri= crawler_url(index,a)
                     )
                 ]
             )
         ]
-    )
-    )
-    send_choose_message(event.source.user_id,Confirm_template)
-        #self.go_back()
+        )
+        )
+        send_choose_message(event.source.user_id,Carousel_template)
     
-    def is_going_to_girl(self, event):
+    def is_going_to_pic(self,event):
         text = event.message.text
-        return text.lower() == "母"
-
-    def on_enter_girl(self, event):
-        print("I'm entering girl")
-        global index2
-        index2 = 0
-        res2 = []
-        while len(res2) < 50:
-            if crawler_id(i+1,"母") == 1:
-                res2.append(i+1)
-        Carousel_template = TemplateSendMessage(
-        alt_text='Carousel template',
-        template=CarouselTemplate(
-        columns=[
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index2]),
-                title='1',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri= crawler_url(res[index2])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index2+1]),
-                title='2',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index2+1])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index2+2]),
-                title='3',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index2+2])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index2+3]),
-                title='4',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index2+3])
-                    )
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url= crawler_img(res[index2+4]),
-                title='5',
-                text='',
-                actions=[
-                    MessageTemplateAction(
-                        label='下載圖片',
-                        text='下載圖片'
-                    ),
-                    URITemplateAction(
-                        label='更多資訊',
-                        uri=crawler_url(res[index2+4])
-                    )
-                ]
-            )
-        ]
-    )
-    )
-    send_choose_message(event.source.user_id,Confirm_template)
-        #self.go_back()
+        return text.lower() == "下載圖片"
+    def on_enter_pic(self,event):
+        send_img(event.source.user_id,crawler_img(index,a))
 
     def is_going_to_more(self, event):
         text = event.message.text
-        return True
+        return text.lower() == "下一個"
 
     def on_enter_more(self, event):
         print("I'm entering result")
+        global a
+        global index
+        index = index + 1
+        Carousel_template = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url= crawler_img(index,a),
+                title='這是搜尋出來的浪浪',
+                text='點擊更多資訊可以得到更多浪浪的資訊喔！'+'\n'+'也可以下載浪浪的照片><',
+                actions=[
+                    MessageTemplateAction(
+                        label='下載圖片',
+                        text='下載圖片'
+                    ),
+                    URITemplateAction(
+                        label='更多資訊',
+                        uri= crawler_url(index,a)
+                    )
+                ]
+            )
+        ]
+        )
+        )
+        send_choose_message(event.source.user_id,Carousel_template)
 
-        reply_token = event.reply_token
-        send_text_message(reply_token, "以下為根據您的條件搜尋出來的浪浪們：")
-       
-        self.go_back()
